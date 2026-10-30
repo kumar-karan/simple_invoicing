@@ -1,8 +1,10 @@
 import { useCallback, useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
+import { Moon, Sun } from 'lucide-react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { NAV_SHORTCUTS, resolveDocumentTitle } from '../config/navigation';
 import { useShortcuts } from '../context/ShortcutsContext';
+import { useTheme } from '../context/ThemeContext';
 import { useEscapeClose } from '../hooks/useEscapeClose';
 import { useMarketplaceSync } from '../features/marketplace/useMarketplaceSync';
 import { useSidebarStore } from '../store/useSidebarStore';
@@ -15,6 +17,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
   const { registerAction } = useShortcuts();
   const navigate = useNavigate();
   const collapsed = useSidebarStore((state) => state.collapsed);
+  const { resolvedTheme, toggleTheme } = useTheme();
 
   // Mounted here rather than on the marketplace pages: the central server can
   // never reach a self-hosted instance, so orders only arrive while something
@@ -63,8 +66,19 @@ export default function Layout({ children }: { children: React.ReactNode }) {
             <span className="sidebar-toggle__bar" />
             <span className="sidebar-toggle__bar" />
           </button>
-          <div className="page-header__shortcut-hint">
-            Press <kbd>?</kbd> for shortcuts
+          <div className="page-header__actions">
+            <button
+              type="button"
+              className="theme-toggle-btn"
+              onClick={toggleTheme}
+              aria-label={`Switch to ${resolvedTheme === 'dark' ? 'light' : 'dark'} mode`}
+              title={`Switch to ${resolvedTheme === 'dark' ? 'light' : 'dark'} mode`}
+            >
+              {resolvedTheme === 'dark' ? <Sun size={16} /> : <Moon size={16} />}
+            </button>
+            <div className="page-header__shortcut-hint">
+              Press <kbd>?</kbd> for shortcuts
+            </div>
           </div>
         </header>
 

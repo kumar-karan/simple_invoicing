@@ -19,6 +19,7 @@ import {
   Mail,
   MailCheck,
   Package,
+  Palette,
   Percent,
   ReceiptText,
   Settings,
@@ -242,6 +243,13 @@ export const SETTINGS_GROUPS: SettingsGroup[] = [
     id: 'account',
     label: 'Your account',
     items: [
+      {
+        to: '/settings/appearance',
+        label: 'Appearance',
+        title: 'Appearance',
+        icon: Palette,
+        description: 'Choose between Notion light mode, dark mode, or system sync.',
+      },
       {
         to: '/settings/security',
         label: 'Security',

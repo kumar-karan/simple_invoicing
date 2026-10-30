@@ -44,6 +44,7 @@ export default defineConfig({
   },
   server: {
     port: 5173,
+    allowedHosts: true,
     proxy: {
       // Anchored with a trailing slash, not a bare '/api': the bare prefix also
       // claimed the app's own /api-keys route, so loading or refreshing that

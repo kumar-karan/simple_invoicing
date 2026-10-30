@@ -199,10 +199,10 @@ export default function ProductCombobox({ id, products, value, onChange, onQuery
             margin: 0,
             padding: 0,
             listStyle: 'none',
-            border: '1px solid var(--border, #d1d5db)',
+            border: '1px solid var(--line-strong)',
             borderRadius: '6px',
-            background: 'var(--surface, #fff)',
-            boxShadow: '0 4px 12px rgba(0,0,0,0.12)',
+            background: 'var(--bg-card-strong)',
+            boxShadow: 'var(--shadow)',
           }}
         >
           {suggestions.map((p, i) => (
@@ -215,11 +215,11 @@ export default function ProductCombobox({ id, products, value, onChange, onQuery
               style={{
                 padding: '8px 12px',
                 cursor: 'pointer',
-                background: i === activeIndex ? 'var(--accent, #3b82f6)' : String(p.id) === value ? 'var(--surface-subtle, #f3f4f6)' : 'transparent',
-                color: i === activeIndex ? '#fff' : '#111827',
+                background: i === activeIndex ? 'var(--accent)' : String(p.id) === value ? 'var(--color-surface-2)' : 'transparent',
+                color: i === activeIndex ? '#fff' : 'var(--text)',
               }}
             >
-              {p.name} <span style={{ opacity: 0.75, fontSize: '0.85em', color: i === activeIndex ? '#fff' : '#374151' }}>({p.sku})</span>
+              {p.name} <span style={{ opacity: 0.75, fontSize: '0.85em', color: i === activeIndex ? '#fff' : 'var(--muted)' }}>({p.sku})</span>
             </li>
           ))}
         </ul>
@@ -232,11 +232,12 @@ export default function ProductCombobox({ id, products, value, onChange, onQuery
             left: 0,
             right: 0,
             zIndex: 50,
+            margin: 0,
             padding: '8px 12px',
-            border: '1px solid var(--border, #d1d5db)',
+            border: '1px solid var(--line-strong)',
             borderRadius: '6px',
-            background: 'var(--surface, #fff)',
-            color: 'var(--text-muted, #6b7280)',
+            background: 'var(--bg-card-strong)',
+            color: 'var(--muted)',
             fontSize: '0.9em',
           }}
         >

@@ -86,7 +86,7 @@ export default function SidebarFYSwitcher() {
                 background: 'var(--bg-card-strong)',
                 border: '1px solid var(--line-strong)',
                 borderRadius: '0.5rem',
-                boxShadow: '0 4px 24px rgba(0,0,0,0.45)',
+                boxShadow: 'var(--shadow)',
                 zIndex: 100,
                 overflow: 'hidden',
                 color: 'var(--text)',

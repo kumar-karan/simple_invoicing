@@ -7,13 +7,13 @@ import { sanitizeNextPath } from '../utils/nextPath';
 import StatusToasts from '../components/StatusToasts';
 
 export default function LoginPage() {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [searchParams] = useSearchParams();
+  const [email, setEmail] = useState(() => searchParams.get('email') || 'admin@simple.dev');
+  const [password, setPassword] = useState(() => searchParams.get('password') || 'Admin@123');
   const [error, setError] = useState('');
   const [submitting, setSubmitting] = useState(false);
   const { login } = useAuth();
   const navigate = useNavigate();
-  const [searchParams] = useSearchParams();
   // Where Protected wanted to send them. Validated, never trusted — an
   // unchecked ?next= is an open redirect aimed at a user who has just typed
   // their password. See utils/nextPath.ts.

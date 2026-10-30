@@ -2,6 +2,7 @@ import { Suspense, lazy, useEffect } from 'react';
 import { Navigate, Route, Routes, useLocation, useParams, useSearchParams } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
 import { MotionConfig } from 'framer-motion';
+import { ThemeProvider } from './context/ThemeContext';
 import { AuthProvider, useAuth } from './context/AuthContext';
 import { FYProvider } from './context/FYContext';
 import { ShortcutsProvider } from './context/ShortcutsContext';
@@ -30,6 +31,7 @@ import SmtpSettingsPage from './pages/SmtpSettingsPage';
 import BackupsPage from './pages/BackupsPage';
 import KeyboardShortcutsPage from './pages/KeyboardShortcutsPage';
 import ChangePasswordPage from './pages/ChangePasswordPage';
+import AppearancePage from './pages/settings/AppearancePage';
 import ApiKeysPage from './pages/ApiKeysPage';
 import ConnectedAppsPage from './pages/settings/ConnectedAppsPage';
 import OAuthConsentPage from './pages/oauth/OAuthConsentPage';
@@ -229,6 +231,7 @@ function AppRoutes() {
       <Route path="/settings/marketplace" element={<SettingsRoute admin><MarketplaceSettingsPage /></SettingsRoute>} />
       <Route path="/settings/email" element={<SettingsRoute admin><SmtpSettingsPage /></SettingsRoute>} />
       <Route path="/settings/email-history" element={<SettingsRoute admin><EmailHistoryPage /></SettingsRoute>} />
+      <Route path="/settings/appearance" element={<SettingsRoute><AppearancePage /></SettingsRoute>} />
       <Route path="/settings/security" element={<SettingsRoute><ChangePasswordPage /></SettingsRoute>} />
       <Route path="/settings/shortcuts" element={<SettingsRoute><KeyboardShortcutsPage /></SettingsRoute>} />
       <Route path="/settings/api-keys" element={<SettingsRoute admin><ApiKeysPage /></SettingsRoute>} />
@@ -259,13 +262,15 @@ export default function App() {
        motion element in the tree drop its transform and layout animation when
        the user has asked for that, keeping only opacity. */
     <MotionConfig reducedMotion="user">
-      <AuthProvider>
-        <FYProvider>
-          <ShortcutsProvider>
-            <AppRoutes />
-          </ShortcutsProvider>
-        </FYProvider>
-      </AuthProvider>
+      <ThemeProvider>
+        <AuthProvider>
+          <FYProvider>
+            <ShortcutsProvider>
+              <AppRoutes />
+            </ShortcutsProvider>
+          </FYProvider>
+        </AuthProvider>
+      </ThemeProvider>
     </MotionConfig>
   );
 }

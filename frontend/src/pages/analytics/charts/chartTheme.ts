@@ -1,24 +1,26 @@
+import type { CSSProperties } from 'react';
+
 /**
  * Chart palette.
  *
- * The app commits to a single dark theme (`:root { color-scheme: dark }`), so
- * these are fixed rather than media-query branched. Values track the sidebar
- * and chart custom properties already in styles.css.
+ * Dynamically binds to the active theme via CSS custom properties with
+ * fallbacks for light and dark environments.
  */
 export const chartColors = {
-  sales: '#6ea8fe',
-  secondary: '#f6d67b',
-  revenue: '#7ee0c0',
-  profit: '#7ee0c0',
-  loss: '#ff8b8b',
-  grid: 'rgba(148, 184, 255, 0.14)',
-  axis: 'rgba(156, 173, 207, 0.75)',
+  sales: 'var(--chart-sales, #2383e2)',
+  secondary: 'var(--chart-secondary, #d97706)',
+  revenue: 'var(--chart-revenue, #0f8a5f)',
+  profit: 'var(--chart-profit, #0f8a5f)',
+  loss: 'var(--chart-loss, #e03e3e)',
+  grid: 'var(--chart-grid, #ebebea)',
+  axis: 'var(--chart-axis, #9b9a97)',
 };
 
-export const tooltipStyle = {
-  background: '#0d1426',
-  border: '1px solid rgba(148, 184, 255, 0.24)',
+export const tooltipStyle: CSSProperties = {
+  background: 'var(--tooltip-bg, #ffffff)',
+  border: '1px solid var(--line, #e9e9e7)',
   borderRadius: '8px',
-  color: '#e6eefb',
+  color: 'var(--text, #37352f)',
   fontSize: '0.8rem',
+  boxShadow: 'var(--shadow, 0 4px 14px rgba(15, 15, 15, 0.08))',
 };
